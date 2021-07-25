@@ -2,8 +2,10 @@ package com.example.new1.bootstrap;
 
 import com.example.new1.domain.Author;
 import com.example.new1.domain.Book;
+import com.example.new1.domain.Publisher;
 import com.example.new1.repositories.AuthorRepository;
 import com.example.new1.repositories.BookRepository;
+import com.example.new1.repositories.PublisherReprository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -12,15 +14,28 @@ public class BootStrapData implements CommandLineRunner {
 
     private final AuthorRepository authorRepository;
     private final BookRepository bookRepository;
+    private final PublisherReprository publisherReprository;
 
-    public BootStrapData(AuthorRepository authorRepository, BookRepository bookRepository) {
+    public BootStrapData(AuthorRepository authorRepository, BookRepository bookRepository, PublisherReprository publisherReprository) {
         this.authorRepository = authorRepository;
         this.bookRepository = bookRepository;
+        this.publisherReprository = publisherReprository;
     }
 
     @Override
     public void run(String... args) throws Exception {
 
+        Publisher publisher = new Publisher();
+        publisher.setName("publ. name");
+        publisher.setCity("pibl. city");
+        publisher.setState("publ. state");
+
+
+
+
+        publisherReprository.save(publisher);
+
+        System.out.println("publisher count" + publisherReprository.count());
 
         Author eric = new Author("Eric", "Evans");
         Book book = new Book("W&P", "123");
@@ -38,7 +53,14 @@ public class BootStrapData implements CommandLineRunner {
         book = bookRepository.save(book);
         eric = authorRepository.save(eric);
 
+
         System.out.println("");
+
+
+        Book.setPublisher(publisher);
+        publisher.getBooks().add(Book);
+        publisherReprository.save(publisher);
+
 
 
 //        Book ddd = new Book("Book Name","12321");
