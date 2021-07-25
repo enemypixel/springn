@@ -5,7 +5,7 @@ import com.example.new1.domain.Book;
 import com.example.new1.domain.Publisher;
 import com.example.new1.repositories.AuthorRepository;
 import com.example.new1.repositories.BookRepository;
-import com.example.new1.repositories.PublisherReprository;
+import com.example.new1.repositories.PublisherRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -14,9 +14,9 @@ public class BootStrapData implements CommandLineRunner {
 
     private final AuthorRepository authorRepository;
     private final BookRepository bookRepository;
-    private final PublisherReprository publisherReprository;
+    private final PublisherRepository publisherReprository;
 
-    public BootStrapData(AuthorRepository authorRepository, BookRepository bookRepository, PublisherReprository publisherReprository) {
+    public BootStrapData(AuthorRepository authorRepository, BookRepository bookRepository, PublisherRepository publisherReprository) {
         this.authorRepository = authorRepository;
         this.bookRepository = bookRepository;
         this.publisherReprository = publisherReprository;
